@@ -1,0 +1,39 @@
+:root{
+    --cor-tema: rgb(220, 243, 9);
+    --cor-tema-escuro: rgb(183, 201, 20);
+    --cor-secundaria: red;
+}
+
+.row-tabuleiro{
+    height: 100vh;
+    background-size: cover;
+}
+.tabuleiro{
+    max-width: 270px;
+    text-align: center;
+    margin: auto;
+}
+.tabuleiro .col-4{padding: 0px;}
+
+.casa{
+    border-radius: 0px;
+    background-color: var(--cor-tema);
+    width: 90px;
+    height: 90px;
+    border: 10px solid var(--cor-tema);
+    box-shadow: none !important;
+    font-size: 30px;
+    transition: 0.2s;
+}
+.casa:hover{background-color: var(--cor-tema-escuro);}
+.casa:active{font-size: 20px;transition: 0.1s;}
+
+/* baixo estilos responsaveis pelas bordas das casas */
+.div-btn-0{border-bottom:1px solid var(--cor-secundaria);}
+.div-btn-1{border-left:1px solid var(--cor-secundaria);border-bottom:1px solid var(--cor-secundaria);}
+.div-btn-2{border-bottom:1px solid var(--cor-secundaria);border-left:1px solid var(--cor-secundaria);}
+.div-btn-3{border-bottom:1px solid var(--cor-secundaria);}
+.div-btn-4{border-left:1px solid var(--cor-secundaria);border-bottom:1px solid var(--cor-secundaria);}
+.div-btn-5{border-bottom:1px solid var(--cor-secundaria);border-left:1px solid var(--cor-secundaria);}
+.div-btn-7{border-left:1px solid var(--cor-secundaria);}
+.div-btn-8{border-left:1px solid var(--cor-secundaria);}
