@@ -4,7 +4,29 @@
     --cor-secundaria: red;
 }
 
-.row-tabuleiro{
+.no-padding{padding: 0px !important;}
+
+/* PLACAR */
+.placar{
+    margin-bottom: 30px;
+}
+.placar .col{padding: 0px 15px 0px 15px;}
+.placar .jogador{
+    max-width: 200px;
+    border: 1px solid black;
+}
+.placar .jogador .pontos{color: gray; text-align: right;}
+
+.placar .jogador.jogador-x{float:right;}
+.placar .jogador.jogador-o{float:left;}
+
+.ativo{transition: .5s;}
+
+.placar .jogador.jogador-x.ativo{box-shadow: 0px 5px 5px blue;}
+.placar .jogador.jogador-o.ativo{box-shadow: 0px 5px 5px red;}
+/* fim - PLACAR */
+
+.row-jogo{
     height: 100vh;
     background-size: cover;
 }
@@ -24,6 +46,7 @@
     box-shadow: none !important;
     font-size: 30px;
     transition: 0.2s;
+    text-transform: uppercase;
 }
 .casa:hover{background-color: var(--cor-tema-escuro);}
 .casa:active{font-size: 20px;transition: 0.1s;}

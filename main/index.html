@@ -11,30 +11,59 @@
     <body>
 
         <div class="container-fluid">
-            <div class="row align-items-center row-tabuleiro">
-                <div class="col-8">
+            <div class="row align-items-center row-jogo">
+                <div class="col">
 
-                    <div class="container tabuleiro">
+                    <div class="container">
+
+                        <div class="row placar">
+                            <div class="col col-12 col-md-6">
+                                <div class="container jogador jogador-x ativo" id="jogador-x">
+                                    <div class="row">
+                                        <div class="col target">X</div>
+                                        <div class="col pontos">-</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-12 col-md-6">
+                                <div class="container jogador jogador-o" id="jogador-o">
+                                    <div class="row">
+                                        <div class="col target">O</div>
+                                        <div class="col pontos">-</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
-                            <div class="col-4"><div class="div-btn-0"><button type="button" class="btn casa" id="btn-0">0</button></div></div>
-                            <div class="col-4"><div class="div-btn-1"><button type="button" class="btn casa" id="btn-1">1</button></div></div>
-                            <div class="col-4"><div class="div-btn-2"><button type="button" class="btn casa" id="btn-2">2</button></div></div>
-                            <div class="col-4"><div class="div-btn-3"><button type="button" class="btn casa" id="btn-3">3</button></div></div>
-                            <div class="col-4"><div class="div-btn-4"><button type="button" class="btn casa" id="btn-4">4</button></div></div>
-                            <div class="col-4"><div class="div-btn-5"><button type="button" class="btn casa" id="btn-5">5</button></div></div>
-                            <div class="col-4"><div class="div-btn-6"><button type="button" class="btn casa" id="btn-6">6</button></div></div>
-                            <div class="col-4"><div class="div-btn-7"><button type="button" class="btn casa" id="btn-7">7</button></div></div>
-                            <div class="col-4"><div class="div-btn-8"><button type="button" class="btn casa" id="btn-8">8</button></div></div>
+                            <div class="col-8" style="border: 1px solid blue;">
+
+                                <div class="container tabuleiro">
+                                    <div class="row">
+                                        <div class="col-4"><div class="div-btn-0"><button type="button" class="btn casa" onclick="clickBtn('btn-0')" id="btn-0"></button></div></div>
+                                        <div class="col-4"><div class="div-btn-1"><button type="button" class="btn casa" onclick="clickBtn('btn-1')" id="btn-1"></button></div></div>
+                                        <div class="col-4"><div class="div-btn-2"><button type="button" class="btn casa" onclick="clickBtn('btn-2')" id="btn-2"></button></div></div>
+                                        <div class="col-4"><div class="div-btn-3"><button type="button" class="btn casa" onclick="clickBtn('btn-3')" id="btn-3"></button></div></div>
+                                        <div class="col-4"><div class="div-btn-4"><button type="button" class="btn casa" onclick="clickBtn('btn-4')" id="btn-4"></button></div></div>
+                                        <div class="col-4"><div class="div-btn-5"><button type="button" class="btn casa" onclick="clickBtn('btn-5')" id="btn-5"></button></div></div>
+                                        <div class="col-4"><div class="div-btn-6"><button type="button" class="btn casa" onclick="clickBtn('btn-6')" id="btn-6"></button></div></div>
+                                        <div class="col-4"><div class="div-btn-7"><button type="button" class="btn casa" onclick="clickBtn('btn-7')" id="btn-7"></button></div></div>
+                                        <div class="col-4"><div class="div-btn-8"><button type="button" class="btn casa" onclick="clickBtn('btn-8')" id="btn-8"></button></div></div>
+                                    </div>
+                                </div>
+            
+                            </div>
+                            <div class="col">
+                                um possível menu aqui
+                            </div>
                         </div>
                     </div>
 
                 </div>
-                <div class="col">
-                    um possível menu aqui
-                </div>
             </div>
         </div>
 
+        <p class="d-none" id="jogador-ativo">x</p><!-- Esse paragrafo vai guardar o jogador que estiver ativo no momento :) -->
         <script src="js/logica.js"></script>
     </body>
 </html>
