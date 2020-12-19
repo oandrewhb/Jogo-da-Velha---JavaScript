@@ -46,7 +46,6 @@
     box-shadow: none !important;
     font-size: 30px;
     transition: 0.2s;
-    text-transform: uppercase;
 }
 .casa:hover{background-color: var(--cor-tema-escuro);}
 .casa:active{font-size: 20px;transition: 0.1s;}
