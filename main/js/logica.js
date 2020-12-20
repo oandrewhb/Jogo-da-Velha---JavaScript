@@ -1,4 +1,4 @@
-//Função do botao quando é clicado
+//Funcao do botao quando clicado
 function clickBtn(id){
     if(!vitoria("X") && !vitoria("O") && !tabuleiroFull()){
         var botao = document.querySelector('#'+id);
@@ -70,7 +70,7 @@ function vitoria(jogador){
         if(contadorVitoriaHorizontal == 3){vitoriaHorizontal = true}
     }
 
-    //procura por vitória na vertical
+    //procura por vitoria na vertical
     var vitoriaVertical = false
     for(var coluna = 0; coluna <= 2; coluna++){		
         var contadorVitoriaVertical = 0	
@@ -80,7 +80,7 @@ function vitoria(jogador){
         if(contadorVitoriaVertical == 3){vitoriaVertical = true}
     }
 
-    //procura vitória na diagonal
+    //procura vitoria na diagonal
     var vitoriaDiagonal = false
     if(tabuleiro[1][1] == jogador){
         if(tabuleiro[0][0] == jogador && tabuleiro[2][2] == jogador){
@@ -164,6 +164,5 @@ function jogadaBot(){
         posJogada = jogadasPossiveis[Math.floor(Math.random() * jogadasPossiveis.length)]
     }
     
-
     clickBtn(posJogada.id)//simula um click de jogador
 }
