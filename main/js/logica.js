@@ -1,3 +1,4 @@
+//Função do botao quando é clicado
 function clickBtn(id){
     if(!vitoria("X") && !vitoria("O") && !tabuleiroFull()){
         var botao = document.querySelector('#'+id);
@@ -104,4 +105,65 @@ function tabuleiroFull(){
         if(document.querySelector('#btn-'+i).textContent != ""){casasPreenchidas++}
     }
     return casasPreenchidas == 9
+}
+
+function jogadaBot(){
+    var tabuleiro = [[document.querySelector('#btn-0'),document.querySelector('#btn-1'),document.querySelector('#btn-2')],
+                  [document.querySelector('#btn-3'),document.querySelector('#btn-4'),document.querySelector('#btn-5')],
+                  [document.querySelector('#btn-6'),document.querySelector('#btn-7'),document.querySelector('#btn-8')]]
+
+    var posJogada = "";//coordenada da casa onde o bot vai jogar
+
+    //Procura por jogadas terminais na horizontal
+    for(var linha = 0; linha <= 2; linha++){
+        if(tabuleiro[linha][0].textContent == "" && tabuleiro[linha][1].textContent == "X" && tabuleiro[linha][2].textContent == "X"){posJogada = tabuleiro[linha][0]}
+        if(tabuleiro[linha][0].textContent == "X" && tabuleiro[linha][1].textContent == "" && tabuleiro[linha][2].textContent == "X"){posJogada = tabuleiro[linha][1]}
+        if(tabuleiro[linha][0].textContent == "X" && tabuleiro[linha][1].textContent == "X" && tabuleiro[linha][2].textContent == ""){posJogada = tabuleiro[linha][2]}
+
+        if(tabuleiro[linha][0].textContent == "" && tabuleiro[linha][1].textContent == "O" && tabuleiro[linha][2].textContent == "O"){posJogada = tabuleiro[linha][0]}
+        if(tabuleiro[linha][0].textContent == "O" && tabuleiro[linha][1].textContent == "" && tabuleiro[linha][2].textContent == "O"){posJogada = tabuleiro[linha][1]}
+        if(tabuleiro[linha][0].textContent == "O" && tabuleiro[linha][1].textContent == "O" && tabuleiro[linha][2].textContent == ""){posJogada = tabuleiro[linha][2]}
+    }
+
+    //Procura por jogadas terminais na vertical
+    for(var coluna = 0; coluna <= 2; coluna++){
+        if(tabuleiro[0][coluna].textContent == "" && tabuleiro[1][coluna].textContent == "X" && tabuleiro[2][coluna].textContent == "X"){posJogada = tabuleiro[0][coluna]}
+        if(tabuleiro[0][coluna].textContent == "X" && tabuleiro[1][coluna].textContent == "" && tabuleiro[2][coluna].textContent == "X"){posJogada = tabuleiro[1][coluna]}
+        if(tabuleiro[0][coluna].textContent == "X" && tabuleiro[1][coluna].textContent == "X" && tabuleiro[2][coluna].textContent == ""){posJogada = tabuleiro[2][coluna]}
+
+        if(tabuleiro[0][coluna].textContent == "" && tabuleiro[1][coluna].textContent == "O" && tabuleiro[2][coluna].textContent == "O"){posJogada = tabuleiro[0][coluna]}
+        if(tabuleiro[0][coluna].textContent == "O" && tabuleiro[1][coluna].textContent == "" && tabuleiro[2][coluna].textContent == "O"){posJogada = tabuleiro[1][coluna]}
+        if(tabuleiro[0][coluna].textContent == "O" && tabuleiro[1][coluna].textContent == "O" && tabuleiro[2][coluna].textContent == ""){posJogada = tabuleiro[2][coluna]}
+    }
+
+    //Procura por jogadas terminais na diagonal
+    if(tabuleiro[0][0].textContent == "" && tabuleiro[1][1].textContent == "X" && tabuleiro[2][2].textContent == "X"){posJogada = tabuleiro[0][0]}
+    if(tabuleiro[0][0].textContent == "X" && tabuleiro[1][1].textContent == "" && tabuleiro[2][2].textContent == "X"){posJogada = tabuleiro[1][1]}
+    if(tabuleiro[0][0].textContent == "X" && tabuleiro[1][1].textContent == "X" && tabuleiro[2][2].textContent == ""){posJogada = tabuleiro[2][2]}
+
+    if(tabuleiro[0][2].textContent == "" && tabuleiro[1][1].textContent == "X" && tabuleiro[2][0].textContent == "X"){posJogada = tabuleiro[0][2]}
+    if(tabuleiro[0][2].textContent == "X" && tabuleiro[1][1].textContent == "" && tabuleiro[2][0].textContent == "X"){posJogada = tabuleiro[1][1]}
+    if(tabuleiro[0][2].textContent == "X" && tabuleiro[1][1].textContent == "X" && tabuleiro[2][0].textContent == ""){posJogada = tabuleiro[2][0]}
+
+    if(tabuleiro[0][0].textContent == "" && tabuleiro[1][1].textContent == "O" && tabuleiro[2][2].textContent == "O"){posJogada = tabuleiro[0][0]}
+    if(tabuleiro[0][0].textContent == "O" && tabuleiro[1][1].textContent == "" && tabuleiro[2][2].textContent == "O"){posJogada = tabuleiro[1][1]}
+    if(tabuleiro[0][0].textContent == "O" && tabuleiro[1][1].textContent == "O" && tabuleiro[2][2].textContent == ""){posJogada = tabuleiro[2][2]}
+
+    if(tabuleiro[0][2].textContent == "" && tabuleiro[1][1].textContent == "O" && tabuleiro[2][0].textContent == "O"){posJogada = tabuleiro[0][2]}
+    if(tabuleiro[0][2].textContent == "O" && tabuleiro[1][1].textContent == "" && tabuleiro[2][0].textContent == "O"){posJogada = tabuleiro[1][1]}
+    if(tabuleiro[0][2].textContent == "O" && tabuleiro[1][1].textContent == "O" && tabuleiro[2][0].textContent == ""){posJogada = tabuleiro[2][0]}
+
+    //Se nao encontrar nenhuma jogada terminal, joga aleatorio msm :/
+    if(posJogada == ""){
+        var jogadasPossiveis = []
+        for(var casa = 0; casa <= 8; casa++){
+            if(document.querySelector('#btn-'+casa).textContent == ""){
+                jogadasPossiveis.push(document.querySelector('#btn-'+casa))
+            }
+        }
+        posJogada = jogadasPossiveis[Math.floor(Math.random() * jogadasPossiveis.length)]
+    }
+    
+
+    clickBtn(posJogada.id)//simula um click de jogador
 }
