@@ -7,6 +7,9 @@
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
+
+        <!-- Fontawesome CSS  -->
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     </head>
     <body>
 
@@ -16,27 +19,30 @@
 
                     <div class="container">
 
-                        <div class="row placar">
-                            <div class="col col-12 col-md-6">
+                        <div class="row placar align-items-center">
+                            <div class="col col-4 col-md-5">
                                 <div class="container jogador jogador-x ativo" id="jogador-x">
                                     <div class="row">
-                                        <div class="col target">X</div>
-                                        <div class="col pontos">-</div>
+                                        <div class="col-12 col-md-6 target">X</div>
+                                        <div class="col-12 col-md-6 pontos">-</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col col-12 col-md-6">
+                            <div class="col-4 col-md-2" style="text-align: center;">
+                                <button type="button" class="btn btn-changeJogadorAtivo" onclick="changeJogadorAtivo()"><i class="fas fa-exchange"></i></button>
+                            </div>
+                            <div class="col col-4 col-md-5">
                                 <div class="container jogador jogador-o" id="jogador-o">
                                     <div class="row">
-                                        <div class="col target">O</div>
-                                        <div class="col pontos">-</div>
+                                        <div class="col-12 col-md-6 target">O</div>
+                                        <div class="col-12 col-md-6 pontos">-</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-8" style="border: 1px solid blue;">
+                            <div class="col-md-8">
 
                                 <div class="container tabuleiro">
                                     <div class="row">
@@ -54,9 +60,17 @@
             
                             </div>
                             <div class="col">
-                                <button type="button" class="btn btn-danger" onclick="resetTabuleiro()">Resetar tabuleiro</button>
-                                <button type="button" class="btn btn-info" onclick="changeJogadorAtivo()">Mudar jogador</button>
-                                <button type="button" class="btn btn-success" onclick="jogadaBot()">Jogada Bot</button>
+                                <div class="container" style="text-align: center; margin-top: 30px;">
+                                    <div class="row">
+                                        <div class="col-12 no-padding">
+                                            <button type="button" class="btn btn-padrao" onclick="resetTabuleiro()">Resetar tabuleiro</button>
+                                        </div>
+                                        <br><br>
+                                        <div class="col-12 no-padding">
+                                            <button type="button" class="btn btn-padrao" onclick="jogadaBot()">Jogada Bot</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
