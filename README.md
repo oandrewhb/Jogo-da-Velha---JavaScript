@@ -6,7 +6,8 @@ Acesse o jogo clicando [aqui](https://andrewhermelino.github.io/Jogo-da-Velha---
 ## Tecnologias
 - JavaScript (lógica do jogo);
 - HTML (estrutura do jogo);
-- CSS (estilo do jogo).
+- CSS (estilo do jogo);
+- Bootstrap (organização da estrutura do jogo e responsividade).
 
 ## Modos de jogo (em desenvolvimento)
 Há dois modos de jogo:
