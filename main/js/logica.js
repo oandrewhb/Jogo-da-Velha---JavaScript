@@ -10,11 +10,13 @@ function clickBtn(id){
                 setTimeout(function () {
                     alert("Jogador X ganhou!")
                     resetTabuleiro();
+                    atualizaPlacar("x")
                 }, delay);
             } else if(vitoria("O")){
                 setTimeout(function () {
                     alert("Jogador O ganhou!")
                     resetTabuleiro();
+                    atualizaPlacar("o")
                 }, delay);
             } else if(tabuleiroFull()){
                 setTimeout(function () {
@@ -26,6 +28,23 @@ function clickBtn(id){
             }
         }
     }
+}
+
+//Atualiza o placar :)
+function atualizaPlacar(jogador){
+    var placar = document.querySelector('#pontos-'+jogador)
+    if(placar.textContent == "-"){
+        var pontos = 0
+    } else {
+        var pontos = parseInt(placar.textContent)
+    }
+    pontos++
+    placar.textContent = pontos;
+}
+//Reseta o placar
+function resetPlacar(){
+    document.querySelector('#pontos-x').textContent = "-"
+    document.querySelector('#pontos-o').textContent = "-"
 }
 
 //Retorna o jogador que estiver na vez
