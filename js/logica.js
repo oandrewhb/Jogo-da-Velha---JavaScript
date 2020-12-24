@@ -1,9 +1,12 @@
+var can_changeJogadorAtivo = true//variavel que dita se pode ou nao mudar o jogador ativo
+var jogadorAtivo = "X"//variavel que guarda o jogador que esta na vez
+
 //Funcao do botao quando clicado
 function clickBtn(id){
     if(!vitoria("X") && !vitoria("O") && !tabuleiroFull()){
         var botao = document.querySelector('#'+id);
         if(botao.textContent == ""){
-            botao.textContent = getJogadorAtivo();
+            botao.textContent = jogadorAtivo;
 
             var delay = 200
             if(vitoria("X")){
@@ -27,6 +30,7 @@ function clickBtn(id){
                 changeJogadorAtivo()
             }
         }
+        lockChangeJogadorAtivo()
     }
 }
 
@@ -47,22 +51,22 @@ function resetPlacar(){
     document.querySelector('#pontos-o').textContent = "-"
 }
 
-//Retorna o jogador que estiver na vez
-function getJogadorAtivo(){
-    return document.querySelector('#jogador-ativo').textContent;
-}
-
 //Alterna o jogador atual
 function changeJogadorAtivo(){
-    var jogadorAtivo = getJogadorAtivo();
     if(jogadorAtivo == "X"){
-        document.querySelector('#jogador-ativo').textContent = "O";
+        jogadorAtivo = "O";
         document.querySelector('#jogador-x').classList.remove('ativo');
         document.querySelector('#jogador-o').classList.add('ativo');
     } else {
-        document.querySelector('#jogador-ativo').textContent = "X";
+        jogadorAtivo = "X";
         document.querySelector('#jogador-x').classList.add('ativo');
         document.querySelector('#jogador-o').classList.remove('ativo');
+    }
+}
+//Funcao executada quanto o usuario clica no botao changeJogadorAtivo
+function btnChangeJogadorAtivo(){
+    if(can_changeJogadorAtivo){
+        changeJogadorAtivo()
     }
 }
 
@@ -71,6 +75,7 @@ function resetTabuleiro(){
     for(var i = 0; i <= 8; i++){
         document.querySelector('#btn-'+i).textContent = "";
     }
+    unlockChangeJogadorAtivo()
 }
 
 //Verifica se um jogador ja ganhou o jogo
@@ -184,4 +189,25 @@ function jogadaBot(){
     }
     
     clickBtn(posJogada.id)//simula um click de jogador
+}
+
+function modoJogo(modo){
+    var modoAtual = document.querySelector('#modo-jogo-atual')
+    if(modo != modoAtual.textContent){
+        modoAtual.textContent = modo
+        resetTabuleiro()
+    }
+}
+
+//Bloqueia o botao changeJogadorAtivo
+function lockChangeJogadorAtivo(){
+    var btn = document.querySelector('#btn-change-jogador-ativo')
+    btn.classList.add('block')
+    can_changeJogadorAtivo = false
+}
+//Desloqueia o botao changeJogadorAtivo
+function unlockChangeJogadorAtivo(){
+    var btn = document.querySelector('#btn-change-jogador-ativo')
+    btn.classList.remove('block')
+    can_changeJogadorAtivo = true
 }
