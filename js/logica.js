@@ -114,10 +114,13 @@ function resetTabuleiro(){
     }
     unlockChangeJogadorAtivo()
     unlockDeixarBotComecar()
-    setTimeout(function () {
+
+    setTimeout(function () {//Se o bot tiver ganho ou empatado a partida passada, ele pode comecar essa partida
         if(bot_podejogar){
             jogadaBot()
             changeJogadorAtivo()
+            lockChangeJogadorAtivo()
+            lockDeixarBotComecar()
             bot_podejogar = false
         }
     }, 200);
