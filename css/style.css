@@ -98,6 +98,11 @@ body{
     margin-bottom: 5px;
 }
 .btn-padrao:hover{border: 1px solid var(--cor-tema);cursor: pointer;}
+.btn-padrao.block{
+    color: #4e555e !important;
+    border: 1px solid #30363d !important;
+    cursor: not-allowed !important;
+}
 
 .div-padrao{
     background-color: #0D1117;

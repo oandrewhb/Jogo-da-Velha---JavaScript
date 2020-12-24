@@ -75,11 +75,14 @@
                                                     Modo de jogo: <span id="modo-jogo-atual">Singleplayer</span>
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="modo-jogo">
-                                                    <a class="dropdown-item" onclick="modoJogo('Singleplayer')" href="#">Singleplayer</a>
-                                                    <a class="dropdown-item" onclick="modoJogo('Multiplayer')" href="#">Multiplayer</a>
+                                                    <a class="dropdown-item" onclick="changeModoJogo('Singleplayer')" href="#">Singleplayer</a>
+                                                    <a class="dropdown-item" onclick="changeModoJogo('Multiplayer')" href="#">Multiplayer</a>
                                                 </div>
                                             </div>
                                             
+                                        </div>
+                                        <div class="col-12 no-padding" id="col-deixar-bot-comecar">
+                                            <button type="button" class="btn btn-padrao" onclick="deixarBotComecar()" id="deixar-bot-comecar">Deixar o bot comecar</button>
                                         </div>
                                         <div class="col-12 no-padding">
                                             <button type="button" class="btn btn-padrao" onclick="resetPlacar()">Resetar placar</button>
