@@ -1,32 +1,73 @@
-//Funcao do botao quando clicado
+var can_changeJogadorAtivo = true//variavel que dita se pode ou nao mudar o jogador ativo
+var can_deixarBotComecar = true//variavel que dita se pode ou nao deixar o bot comecar
+var jogadorAtivo = "X"//variavel que guarda o jogador que esta na vez
+var modoJogoAtual = "Singleplayer"
+var usuario_podeJogar = true//fica falso para evitar que o usuario faca uma jogada quando nao deve
+var bot_podejogar = false//guarda a informacao de que o bot pode comecar a proxima partida quando necessario
+
+//Funcao do botao quando clicado pelo usuario
 function clickBtn(id){
+    lockChangeJogadorAtivo()
+    lockDeixarBotComecar()
+    if(modoJogoAtual == "Singleplayer"){
+        if(usuario_podeJogar){//se o usuario estiver na vez (impede que o usuario jogue duas ou mais vezes seguidas)
+            jogada(id)//executa a jogada do usuario
+            if(posJogada() == "null"){//se o usuario nao ganhou o jogo e nao empatou o jogo
+                usuario_podeJogar = false//usuario nao pode jogar, pois agora e a vez do bot
+                setTimeout(function () {//pequeno delay antes do bot jogar
+                    jogadaBot()//bot faz a sua jogada
+                    if(vitoria("X") || vitoria("O") || tabuleiroFull()){//se o bot ganhou a partida ou empatou a partida
+                        bot_podejogar = true//guarda a informacao de que o bot pode comecar a proxima partida
+                        posJogada()
+                    } else {
+                        changeJogadorAtivo()
+                    }
+                    usuario_podeJogar = true//agora o usuario pode jogar
+                }, 500);
+            }
+        }
+    } else {
+        jogada(id)
+        posJogada()
+    }
+}
+
+//Executa uma jogada no tabuleiro
+function jogada(id){
     if(!vitoria("X") && !vitoria("O") && !tabuleiroFull()){
         var botao = document.querySelector('#'+id);
         if(botao.textContent == ""){
-            botao.textContent = getJogadorAtivo();
-
-            var delay = 200
-            if(vitoria("X")){
-                setTimeout(function () {
-                    alert("Jogador X ganhou!")
-                    resetTabuleiro();
-                    atualizaPlacar("x")
-                }, delay);
-            } else if(vitoria("O")){
-                setTimeout(function () {
-                    alert("Jogador O ganhou!")
-                    resetTabuleiro();
-                    atualizaPlacar("o")
-                }, delay);
-            } else if(tabuleiroFull()){
-                setTimeout(function () {
-                    alert("Empate!")
-                    resetTabuleiro();
-                }, delay);
-            } else {
-                changeJogadorAtivo()
-            }
+            botao.textContent = jogadorAtivo;
         }
+    }
+}
+
+//Procedimentos padroes executados apos uma jogada
+function posJogada(){
+    var delay = 200
+    if(vitoria("X")){
+        setTimeout(function () {
+            alert("Jogador X ganhou!")
+            resetTabuleiro();
+            atualizaPlacar("x")
+            return "vitoriax"
+        }, delay);
+    } else if(vitoria("O")){
+        setTimeout(function () {
+            alert("Jogador O ganhou!")
+            resetTabuleiro();
+            atualizaPlacar("o")
+            return "vitoriao"
+        }, delay);
+    } else if(tabuleiroFull()){
+        setTimeout(function () {
+            alert("Empate!")
+            resetTabuleiro();
+            return "empate"
+        }, delay);
+    } else {
+        changeJogadorAtivo()
+        return "null"
     }
 }
 
@@ -47,22 +88,22 @@ function resetPlacar(){
     document.querySelector('#pontos-o').textContent = "-"
 }
 
-//Retorna o jogador que estiver na vez
-function getJogadorAtivo(){
-    return document.querySelector('#jogador-ativo').textContent;
-}
-
 //Alterna o jogador atual
 function changeJogadorAtivo(){
-    var jogadorAtivo = getJogadorAtivo();
     if(jogadorAtivo == "X"){
-        document.querySelector('#jogador-ativo').textContent = "O";
+        jogadorAtivo = "O";
         document.querySelector('#jogador-x').classList.remove('ativo');
         document.querySelector('#jogador-o').classList.add('ativo');
     } else {
-        document.querySelector('#jogador-ativo').textContent = "X";
+        jogadorAtivo = "X";
         document.querySelector('#jogador-x').classList.add('ativo');
         document.querySelector('#jogador-o').classList.remove('ativo');
+    }
+}
+//Funcao executada quanto o usuario clica no botao changeJogadorAtivo
+function btnChangeJogadorAtivo(){
+    if(can_changeJogadorAtivo){
+        changeJogadorAtivo()
     }
 }
 
@@ -71,6 +112,15 @@ function resetTabuleiro(){
     for(var i = 0; i <= 8; i++){
         document.querySelector('#btn-'+i).textContent = "";
     }
+    unlockChangeJogadorAtivo()
+    unlockDeixarBotComecar()
+    setTimeout(function () {
+        if(bot_podejogar){
+            jogadaBot()
+            changeJogadorAtivo()
+            bot_podejogar = false
+        }
+    }, 200);
 }
 
 //Verifica se um jogador ja ganhou o jogo
@@ -126,6 +176,7 @@ function tabuleiroFull(){
     return casasPreenchidas == 9
 }
 
+//Ao chamar essa funcao, um bot vai executar uma jogada
 function jogadaBot(){
     var tabuleiro = [[document.querySelector('#btn-0'),document.querySelector('#btn-1'),document.querySelector('#btn-2')],
                   [document.querySelector('#btn-3'),document.querySelector('#btn-4'),document.querySelector('#btn-5')],
@@ -183,5 +234,54 @@ function jogadaBot(){
         posJogada = jogadasPossiveis[Math.floor(Math.random() * jogadasPossiveis.length)]
     }
     
-    clickBtn(posJogada.id)//simula um click de jogador
+    jogada(posJogada.id)//simula um click de jogador
+}
+
+
+function changeModoJogo(modo){
+    var modoAtual = document.querySelector('#modo-jogo-atual')
+    if(modo != modoAtual.textContent){
+        modoAtual.textContent = modo
+        modoJogoAtual = modo
+        if(modo == "Singleplayer"){
+            document.querySelector('#col-deixar-bot-comecar').classList.remove('d-none')
+        } else{
+            document.querySelector('#col-deixar-bot-comecar').classList.add('d-none')
+        }
+        resetTabuleiro()
+    }
+}
+
+//Bloqueia o botao changeJogadorAtivo
+function lockChangeJogadorAtivo(){
+    var btn = document.querySelector('#btn-change-jogador-ativo')
+    btn.classList.add('block')
+    can_changeJogadorAtivo = false
+}
+//Desloqueia o botao changeJogadorAtivo
+function unlockChangeJogadorAtivo(){
+    var btn = document.querySelector('#btn-change-jogador-ativo')
+    btn.classList.remove('block')
+    can_changeJogadorAtivo = true
+}
+
+//Bloqueia o botao deixarBotComecar
+function lockDeixarBotComecar(){
+    var btn = document.querySelector('#deixar-bot-comecar')
+    btn.classList.add('block')
+    can_deixarBotComecar = false
+}
+//Desloqueia o botao deixarBotComecar
+function unlockDeixarBotComecar(){
+    var btn = document.querySelector('#deixar-bot-comecar')
+    btn.classList.remove('block')
+    can_deixarBotComecar = true
+}
+
+function deixarBotComecar(){
+    if(can_deixarBotComecar){
+        lockDeixarBotComecar()
+        jogadaBot()
+        changeJogadorAtivo()
+    }
 }
