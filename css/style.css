@@ -103,6 +103,8 @@ body{
     border: 1px solid #30363d !important;
     cursor: not-allowed !important;
 }
+.btn-padrao.apagado{color: #495057 !important;}
+.btn-padrao.apagado:hover{color: var(--cor-tema) !important;}
 
 .div-padrao{
     background-color: #0D1117;
@@ -117,3 +119,47 @@ body{
 }
 .dropdown-menu a{color: #C9D1D9 !important;transition: .1s;}
 .dropdown-menu a:hover{background-color: var(--cor-tema);}
+
+.modal .modal-content{
+    background-color: #0D1117;
+    border: 1px solid #30363D;
+    color: #dad8d8;
+}
+.modal .modal-header{border-bottom: 1px solid #30363D;}
+.modal .modal-footer{border-top: 1px solid #30363D;}
+
+.modal-center {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.modal-center.show {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+}
+  
+.modal-center .modal-dialog {
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, 50%) !important;
+            transform: translate(-50%, 50%) !important;
+}
+
+.modal-backdrop.fade.show{
+    opacity: 0.9;
+    background-color: black;
+}
+.modal#modal-msgFimJogo .modal-content{
+    background-color: transparent;
+    border: none;
+    text-align: center;
+}
+.modal#modal-msgFimJogo .mensagem{
+    color: var(--cor-tema);
+    font-size: 80px;
+}

@@ -40,31 +40,48 @@ function jogada(id){
         var botao = document.querySelector('#'+id);
         if(botao.textContent == ""){
             botao.textContent = jogadorAtivo;
+            document.querySelector('#col-btn-resetar-tabuleiro').classList.remove('d-none')
         }
     }
 }
 
+const posFim = {//Essa variavel vai guardar a funcao q sera executada depois do fim de um jogo
+    delay: 400,//Delay antes de executar a funcao posFim
+    funcao: function(){}//Funcao posFim
+}
 //Procedimentos padroes executados apos uma jogada
 function posJogada(){
     var delay = 200
     if(vitoria("X")){
         setTimeout(function () {
-            alert("Jogador X ganhou!")
-            resetTabuleiro();
-            atualizaPlacar("x")
+            msgFimJogo("X Vencedor!")
+            posFim.funcao = function(){
+                setTimeout(function(){
+                    resetTabuleiro();
+                    atualizaPlacar("x")
+                }, posFim.delay)
+            }
             return "vitoriax"
         }, delay);
     } else if(vitoria("O")){
         setTimeout(function () {
-            alert("Jogador O ganhou!")
-            resetTabuleiro();
-            atualizaPlacar("o")
+            msgFimJogo("O Vencedor!")
+            posFim.funcao = function(){
+                setTimeout(function(){
+                    resetTabuleiro();
+                    atualizaPlacar("o")
+                }, posFim.delay)
+            }
             return "vitoriao"
         }, delay);
     } else if(tabuleiroFull()){
         setTimeout(function () {
-            alert("Empate!")
-            resetTabuleiro();
+            msgFimJogo("Empate!")
+            posFim.funcao = function(){
+                setTimeout(function(){
+                    resetTabuleiro();
+                }, posFim.delay)
+            }
             return "empate"
         }, delay);
     } else {
@@ -83,11 +100,13 @@ function atualizaPlacar(jogador){
     }
     pontos++
     placar.textContent = pontos;
+    document.querySelector('#col-btn-resetar-placar').classList.remove('d-none')
 }
 //Reseta o placar
 function resetPlacar(){
     document.querySelector('#pontos-x').textContent = "-"
     document.querySelector('#pontos-o').textContent = "-"
+    document.querySelector('#col-btn-resetar-placar').classList.add('d-none')
 }
 
 //Alterna o jogador atual
@@ -116,6 +135,7 @@ function resetTabuleiro(){
     }
     unlockChangeJogadorAtivo()
     unlockDeixarBotComecar()
+    document.querySelector('#col-btn-resetar-tabuleiro').classList.add('d-none')
 
     setTimeout(function () {//Se o bot tiver ganho ou empatado a partida passada, ele pode comecar essa partida
         if(bot_podejogar){
@@ -289,4 +309,15 @@ function deixarBotComecar(){
         jogadaBot()
         changeJogadorAtivo()
     }
+}
+
+//Mostra uma mensagem de fim de jogo
+function msgFimJogo(msg, botVenceu = false){
+
+    document.querySelector('#msg-vencedor').textContent = msg
+
+    //mostra o modal
+    $(document).ready(function(){
+        $("#modal-msgFimJogo").modal();
+    });
 }

@@ -84,11 +84,15 @@
                                         <div class="col-12 no-padding" id="col-deixar-bot-comecar">
                                             <button type="button" class="btn btn-padrao" onclick="deixarBotComecar()" id="deixar-bot-comecar">Deixar o bot comecar</button>
                                         </div>
-                                        <div class="col-12 no-padding">
-                                            <button type="button" class="btn btn-padrao" onclick="resetPlacar()">Resetar placar</button>
+                                        <div class="col-12 no-padding d-none" id="col-btn-resetar-placar">
+                                            <button type="button" class="btn btn-padrao" data-toggle="modal" data-target="#confirmResetPlacar">
+                                                Resetar placar
+                                            </button>
                                         </div>
-                                        <div class="col-12 no-padding">
-                                            <button type="button" class="btn btn-padrao" onclick="resetTabuleiro()">Resetar tabuleiro</button>
+                                        <div class="col-12 no-padding d-none" id="col-btn-resetar-tabuleiro">
+                                            <button type="button" class="btn btn-padrao" data-toggle="modal" data-target="#confirmResetTabuleiro">
+                                                Resetar tabuleiro
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -96,6 +100,70 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal modal-center fade" id="modal-msgFimJogo" tabindex="-1" onclick="posFim.funcao()">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="mensagem" id="msg-vencedor">X Vencedor!</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="button" class="btn btn-padrao" data-dismiss="modal" style="max-width: 60px;"><i class="fas fa-gamepad"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal confirma esetar tabuleiro -->
+        <div class="modal fade" id="confirmResetTabuleiro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tem certeza?</h5>
+                    </div>
+                    <div class="modal-body">
+                        - O tabuleiro tera todas as suas casas zeradas;<br>
+                        - O placar permanecera do jeito que esta;<br>
+                        - O jogador na vez atual continuara na vez;<br>
+                        - Essa acao nao podera ser desfeita depois de confirmada.<br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-padrao apagado" data-dismiss="modal" onclick="resetTabuleiro()">Confirmar</button>
+                        <button type="button" class="btn btn-padrao" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal confirma esetar placar -->
+        <div class="modal fade" id="confirmResetPlacar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tem certeza?</h5>
+                    </div>
+                    <div class="modal-body">
+                        - Todos os pontos contabilizados no placar serao zerados;<br>
+                        - O tabuleiro permanecera do jeito que esta;<br>
+                        - O jogador na vez atual continuara na vez;<br>
+                        - Essa acao nao podera ser desfeita depois de confirmada.<br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-padrao apagado" data-dismiss="modal" onclick="resetPlacar()">Confirmar</button>
+                        <button type="button" class="btn btn-padrao" data-dismiss="modal">Cancelar</button>
+                    </div>
                 </div>
             </div>
         </div>
