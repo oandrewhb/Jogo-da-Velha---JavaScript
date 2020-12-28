@@ -7,28 +7,30 @@ var bot_podejogar = false//guarda a informacao de que o bot pode comecar a proxi
 
 //Funcao do botao quando clicado pelo usuario
 function clickBtn(id){
-    lockChangeJogadorAtivo()
-    lockDeixarBotComecar()
-    if(modoJogoAtual == "Singleplayer"){
-        if(usuario_podeJogar){//se o usuario estiver na vez (impede que o usuario jogue duas ou mais vezes seguidas)
-            jogada(id)//executa a jogada do usuario
-            if(posJogada() == "null"){//se o usuario nao ganhou o jogo e nao empatou o jogo
-                usuario_podeJogar = false//usuario nao pode jogar, pois agora e a vez do bot
-                setTimeout(function () {//pequeno delay antes do bot jogar
-                    jogadaBot()//bot faz a sua jogada
-                    if(vitoria("X") || vitoria("O") || tabuleiroFull()){//se o bot ganhou a partida ou empatou a partida
-                        bot_podejogar = true//guarda a informacao de que o bot pode comecar a proxima partida
-                        posJogada()
-                    } else {
-                        changeJogadorAtivo()
-                    }
-                    usuario_podeJogar = true//agora o usuario pode jogar
-                }, 500);
+    if(document.querySelector('#'+id).textContent == ""){
+        lockChangeJogadorAtivo()
+        lockDeixarBotComecar()
+        if(modoJogoAtual == "Singleplayer"){
+            if(usuario_podeJogar){//se o usuario estiver na vez (impede que o usuario jogue duas ou mais vezes seguidas)
+                jogada(id)//executa a jogada do usuario
+                if(posJogada() == "null"){//se o usuario nao ganhou o jogo e nao empatou o jogo
+                    usuario_podeJogar = false//usuario nao pode jogar, pois agora e a vez do bot
+                    setTimeout(function () {//pequeno delay antes do bot jogar
+                        jogadaBot()//bot faz a sua jogada
+                        if(vitoria("X") || vitoria("O") || tabuleiroFull()){//se o bot ganhou a partida ou empatou a partida
+                            bot_podejogar = true//guarda a informacao de que o bot pode comecar a proxima partida
+                            posJogada()
+                        } else {
+                            changeJogadorAtivo()
+                        }
+                        usuario_podeJogar = true//agora o usuario pode jogar
+                    }, 500);
+                }
             }
+        } else {
+            jogada(id)
+            posJogada()
         }
-    } else {
-        jogada(id)
-        posJogada()
     }
 }
 
