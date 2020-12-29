@@ -1,11 +1,18 @@
 :root{
-    --cor-tema: #58A6FF;
-    --tamanho-grade-tabuleiro: 3px;
+    --theme: #58A6FF;
+    --background: #06090F;
+    --background-div: #0D1117;
+    --background-button: #21262D;
+    --default-border: #30363D;
+    --text: #cacaca;
+    --title: #FFFFFF;
+    --width-grid-tabuleiro: 3px;
+    --desable: #464b52;
 }
 
 body{
     background-color: #06090F;
-    color: white;
+    color: var(--text);
 }
 
 .no-padding{padding: 0px !important;}
@@ -18,12 +25,13 @@ body{
 .placar .jogador{
     width: 100%;
     height: 100%;
-    border: 1px solid #30363D;
+    border: 1px solid var(--default-border);
     border-radius: 6px;
     padding-top: 2px;
     padding-bottom: 2px;
 }
-.placar .jogador .pontos{color: #aaaaaa; text-align: right;}
+.placar .jogador .pontos{color: var(--text); text-align: right;}
+.placar .jogador .target{color: var(--title);}
 @media(max-width: 768px){
     .placar .jogador{text-align: center;}
     .placar .jogador .pontos{text-align: center;}
@@ -34,7 +42,7 @@ body{
 
 .ativo{transition: .5s;}
 
-.placar .jogador.ativo{border: 1px solid var(--cor-tema); background-color: #0D1117;}
+.placar .jogador.ativo{border: 1px solid var(--theme); background-color: var(--background-div);}
 /* fim - PLACAR */
 
 .row-jogo{
@@ -53,80 +61,80 @@ body{
     background-color: transparent;
     width: 100%;
     height: 90px;
-    border: 10px solid #06090F;
+    border: 10px solid var(--background);
     box-shadow: none !important;
     font-size: 40px;
     transition: 0.2s;
-    color: var(--cor-tema) !important;
+    color: var(--theme) !important;
     border-radius: 60px;
 }
-.casa:hover{background-color: #0D1117;}
+.casa:hover{background-color: var(--background-div);}
 .casa:active{font-size: 20px;transition: 0.1s;}
 
 /* baixo estilos responsaveis pelas bordas das casas */
-.div-btn-0{border-bottom:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);}
-.div-btn-1{border-left:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);border-bottom:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);}
-.div-btn-2{border-bottom:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);border-left:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);}
-.div-btn-3{border-bottom:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);}
-.div-btn-4{border-left:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);border-bottom:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);}
-.div-btn-5{border-bottom:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);border-left:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);}
-.div-btn-7{border-left:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);}
-.div-btn-8{border-left:var(--tamanho-grade-tabuleiro) solid var(--cor-tema);}
+.div-btn-0{border-bottom:var(--width-grid-tabuleiro) solid var(--theme);}
+.div-btn-1{border-left:var(--width-grid-tabuleiro) solid var(--theme);border-bottom:var(--width-grid-tabuleiro) solid var(--theme);}
+.div-btn-2{border-bottom:var(--width-grid-tabuleiro) solid var(--theme);border-left:var(--width-grid-tabuleiro) solid var(--theme);}
+.div-btn-3{border-bottom:var(--width-grid-tabuleiro) solid var(--theme);}
+.div-btn-4{border-left:var(--width-grid-tabuleiro) solid var(--theme);border-bottom:var(--width-grid-tabuleiro) solid var(--theme);}
+.div-btn-5{border-bottom:var(--width-grid-tabuleiro) solid var(--theme);border-left:var(--width-grid-tabuleiro) solid var(--theme);}
+.div-btn-7{border-left:var(--width-grid-tabuleiro) solid var(--theme);}
+.div-btn-8{border-left:var(--width-grid-tabuleiro) solid var(--theme);}
 
 .btn-changeJogadorAtivo{
-    background-color: #0D1117;
-    color: var(--cor-tema) !important;
+    background-color: var(--background-div);
+    color: var(--theme) !important;
     border-radius: 50px;
-    border: 1px solid #30363d;
+    border: 1px solid var(--default-border);
     box-shadow: none !important;
 }
-.btn-changeJogadorAtivo:hover{border: 1px solid var(--cor-tema);}
+.btn-changeJogadorAtivo:hover{border: 1px solid var(--theme);}
 .btn-changeJogadorAtivo.block{
-    color: #30363d !important;
-    border: 1px solid #30363d !important;
+    color: var(--desable) !important;
+    border: 1px solid var(--default-border) !important;
     cursor: not-allowed !important;
     opacity: .7;
 }
 
 .btn-padrao{
-    border: 1px solid #30363d;
-    color: var(--cor-tema) !important;
+    border: 1px solid var(--default-border);
+    color: var(--theme) !important;
     width: 100%;
     box-shadow: none !important;
-    background-color: #21262D;
+    background-color: var(--background-button);
     margin-top: 5px;
     margin-bottom: 5px;
 }
-.btn-padrao:hover{border: 1px solid var(--cor-tema);cursor: pointer;}
+.btn-padrao:hover{border: 1px solid var(--theme);cursor: pointer;}
 .btn-padrao.block{
-    color: #4e555e !important;
-    border: 1px solid #30363d !important;
+    color: var(--desable) !important;
+    border: 1px solid var(--default-border) !important;
     cursor: not-allowed !important;
 }
-.btn-padrao.apagado{color: #495057 !important;}
-.btn-padrao.apagado:hover{color: var(--cor-tema) !important;}
+.btn-padrao.apagado{color: var(--desable) !important;}
+.btn-padrao.apagado:hover{color: var(--theme) !important;}
 
 .div-padrao{
-    background-color: #0D1117;
-    border: 1px solid #30363D;
+    background-color: var(--background-div);
+    border: 1px solid var(--default-border);
     padding: 30px 50px;
     border-radius: 6px;
 }
 
 .dropdown-menu{
-    background-color: #21262D;
-    border: 1px solid #30363d;
+    background-color: var(--background-button);
+    border: 1px solid var(--default-border);
 }
-.dropdown-menu a{color: #C9D1D9 !important;transition: .1s;}
-.dropdown-menu a:hover{background-color: var(--cor-tema);}
+.dropdown-menu a{color: var(--text) !important;transition: .1s;}
+.dropdown-menu a:hover{background-color: var(--theme);}
 
 .modal .modal-content{
-    background-color: #0D1117;
-    border: 1px solid #30363D;
-    color: #dad8d8;
+    background-color: var(--background-div);
+    border: 1px solid var(--default-border);
+    color: var(--text);
 }
-.modal .modal-header{border-bottom: 1px solid #30363D;}
-.modal .modal-footer{border-top: 1px solid #30363D;}
+.modal .modal-header{border-bottom: 1px solid var(--default-border); color: var(--title)}
+.modal .modal-footer{border-top: 1px solid var(--default-border);}
 
 .modal-center {
     -webkit-transform: scale(0);
@@ -160,6 +168,6 @@ body{
     text-align: center;
 }
 .modal#modal-msgFimJogo .mensagem{
-    color: var(--cor-tema);
+    color: var(--theme);
     font-size: 80px;
 }
