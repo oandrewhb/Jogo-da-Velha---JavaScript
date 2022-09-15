@@ -111,8 +111,6 @@ body{
     border: 1px solid var(--default-border) !important;
     cursor: not-allowed !important;
 }
-.btn-padrao.apagado{color: var(--desable) !important;}
-.btn-padrao.apagado:hover{color: var(--theme) !important;}
 
 .div-padrao{
     background-color: var(--background-div);
